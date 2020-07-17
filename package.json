@@ -14,10 +14,13 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.6.7",
     "@mdx-js/react": "^1.6.7",
     "@theme-ui/presets": "^0.4.0-rc.1",
     "@theme-ui/prism": "^0.4.0-rc.1",
+    "@types/react-helmet": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "gatsby": "^2.24.3",
@@ -27,6 +30,8 @@
     "gatsby-source-filesystem": "^2.3.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-live": "^2.2.2",
     "theme-ui": "^0.4.0-rc.1",
     "typescript": "^3.9.6"
   },

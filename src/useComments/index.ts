@@ -12,6 +12,7 @@ export interface Comment {
 const getCommentsQuery = `
 query GetComments($postId: String!, $limit: Int, $offset: Int) {
   comments(where: {post: {_eq: $postId}}, limit: $limit, offset: $offset) {
+    id
     content
     created_at
     parent_comment
@@ -41,21 +42,18 @@ export interface UseCommentsError {
 }
 
 export interface UseCommentsConfig {
-  hasuraUrl: string;
-  postId: string;
   limit?: number;
   offset?: number;
 }
-export const useComments = ({
-  hasuraUrl,
-  limit,
-  offset = 0,
-  postId,
-}: UseCommentsConfig) => {
+export const useComments = (
+  hasuraUrl: string,
+  postId: string,
+  config?: UseCommentsConfig
+) => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [error, setError] = useState<UseCommentsError | null>(null);
 
-  useEffect(() => {
+  const fetchComments = () => {
     fetch(hasuraUrl, {
       method: 'POST',
       headers: {
@@ -65,14 +63,13 @@ export const useComments = ({
         query: getCommentsQuery,
         variables: {
           postId,
-          ...(limit && { limit }),
-          ...(offset && { offset }),
+          ...(config?.limit && { limit: config.limit }),
+          ...(config?.offset && { offset: config.offset }),
         },
       }),
     })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log({ res });
+      .then(res => res.json())
+      .then(res => {
         if (res.errors && res.errors.length) {
           setError({
             error: errorMessage,
@@ -82,13 +79,15 @@ export const useComments = ({
         }
         setComments(res.data.comments);
       })
-      .catch((err) => {
+      .catch(err => {
         setError({
           error: errorMessage,
           details: err,
         });
       });
-  }, []);
+  };
+
+  useEffect(fetchComments, []);
 
   const addComment = ({
     content,
@@ -108,8 +107,8 @@ export const useComments = ({
         },
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data.errors && data.errors.length) {
           setError({
             error: errorMessage,
@@ -119,7 +118,7 @@ export const useComments = ({
         }
         console.log({ data });
       })
-      .catch((err) => {
+      .catch(err => {
         setError({
           error: errorMessage,
           details: err,
@@ -127,7 +126,5 @@ export const useComments = ({
       });
   };
 
-  const refetch = () => {};
-
-  return { comments, addComment, refetch, error };
+  return { comments, addComment, refetch: fetchComments, error };
 };

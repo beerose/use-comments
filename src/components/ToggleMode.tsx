@@ -11,7 +11,7 @@ export const ToggleMode = () => {
         setColorMode(colorMode === 'default' ? 'dark' : 'default')
       }
       checked={colorMode !== 'default'}
-      size={25}
+      size="calc(1.25rem + 1px)"
       speed={2.5}
     />
   );

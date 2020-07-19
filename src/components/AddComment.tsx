@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-  Box,
-  Button,
-  Label,
-  Input,
-  Select,
-  Textarea,
-  Radio,
-  Flex,
-  Divider,
-  Checkbox,
-  Slider,
-} from 'theme-ui';
+import { Box, Button, Label, Input, Textarea, Divider } from 'theme-ui';
 
 import { useComments, Comment } from '../useComments';
 
@@ -35,23 +23,22 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
       <Input
         name="username"
         id="username"
-        mb={3}
         placeholder="Jon Doe"
         value={username}
         onChange={e => setUsername(e.target.value)}
+        sx={{ mb: 3 }}
       />
       <Label htmlFor="comment">Comment</Label>
       <Textarea
         name="comment"
         id="comment"
-        rows="2"
-        mb={3}
-        fontFamily="body"
+        rows={2}
         placeholder="Tell me what you think 😊"
         value={comment}
         onChange={e => setComment(e.target.value)}
+        sx={{ mb: 3, fontFamily: 'body' }}
       />
-      <Button mb={3} type="submit" sx={{ cursor: 'pointer' }}>
+      <Button type="submit" sx={{ mb: 3 }}>
         Add comment
       </Button>
       <Divider />

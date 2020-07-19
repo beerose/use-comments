@@ -58,7 +58,7 @@ export const useComments = (
     fetch(hasuraUrl, {
       method: 'POST',
       headers: {
-        'x-hasura-role': 'user',
+        'x-hasura-role': 'anonymous',
       },
       body: JSON.stringify({
         query: getCommentsQuery,

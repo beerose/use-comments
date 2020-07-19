@@ -1,0 +1,57 @@
+import { Button } from 'theme-ui';
+
+## Getting started
+
+1. **Deploy Hasura**
+
+   Click this 👇 to deploy a fresh [Hasura] instance.
+
+   <Button
+     as="a"
+     href="https://heroku.com/deploy?template=https://github.com/hasura/graphql-engine-heroku"
+     variant="buttons.primary"
+     sx={{ my: 2 }}
+   >
+     Deploy Hasura to Heroku
+   </Button>
+
+   We need to keep all of these comments somewhere, right? Hasura handles this for us.
+
+   Check out [the docs][hasura-docs] for more details. You can find more options for one-click deployment there.
+
+[hasura]: https://hasura.io
+[hasura-docs]: https://hasura.io/docs/1.0/graphql/manual/guides/deployment/heroku-one-click.html
+
+2.  **Set config vars in Heroku**
+
+   <!-- https://dashboard.heroku.com/apps/aleksandra-codes-comments/settings -->
+
+3.  **Import database schema and metadata**
+
+   <!-- TODO: Link to /hasura/up.sql -->
+   <!-- TODO: Research if this step can be skipped by deploying your own Heroku image -->
+
+4.  **Install `use-comments`**
+
+    <!-- TODO: Links to copy code snippets -->
+
+    ```
+    npm install use-comments
+    ```
+
+    ```
+    yarn add use-comments
+    ```
+
+    or add it from CDN
+
+    ```
+    TODO: Example with unpkg and global variable `useComments`.
+    ```
+
+5.  **Create beautiful UI for your comments**
+
+    Start off from one of the examples or write it from scratch.
+
+   <!-- TODO: CodeSandbox examples: Theme UI, Tailwind -->
+   <!-- TODO: Buttons to copy source here -->

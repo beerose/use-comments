@@ -3,4 +3,9 @@ declare module '!!raw-loader!*' {
   export default src;
 }
 
+declare module '*.mdx' {
+  const component: React.FC;
+  export default component;
+}
+
 declare module 'react-toggle-dark-mode';

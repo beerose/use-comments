@@ -1,11 +1,23 @@
 // You can edit this! 😱
 
 const Comments = ({ postId }) => {
-  const { comments, addComment, refetch, error } = useComments(
+  const {
+    comments,
+    addComment,
+    refetch,
+    error,
+  } = useComments(
     'https://aleksandra-codes-comments.herokuapp.com/v1/graphql',
     postId,
     { limit: 5 }
   );
+
+  comments.push({
+    id: 'test',
+    author: 'The Biggest Fan',
+    content: 'Nice lib!',
+    created_at: new Date(),
+  });
 
   return (
     <section>

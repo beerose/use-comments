@@ -11,7 +11,7 @@ export interface Comment {
 
 const getCommentsQuery = `
 query GetComments($postId: String!, $limit: Int, $offset: Int) {
-  comments(where: {post: {_eq: $postId}}, limit: $limit, offset: $offset) {
+  comments(where: {post: {_eq: $postId}}, limit: $limit, offset: $offset, order_by: {created_at: desc}) {
     id
     content
     created_at
@@ -25,6 +25,7 @@ query GetComments($postId: String!, $limit: Int, $offset: Int) {
 const addNewCommentMutation = `
 mutation AddNewComment($postId: String!, $author: String!, $content: String!) {
   insert_comments_one(object: {author: $author, content: $content, post: $postId}) {
+    id
     content
     author
     created_at
@@ -108,15 +109,19 @@ export const useComments = (
       }),
     })
       .then(res => res.json())
-      .then(data => {
-        if (data.errors && data.errors.length) {
+      .then(res => {
+        if (res.errors && res.errors.length) {
           setError({
             error: errorMessage,
-            details: data.errors[0].message,
+            details: res.errors[0].message,
           });
           return;
         }
-        console.log({ data });
+        setComments(prev =>
+          res.data.insert_comments_one
+            ? [res.data.insert_comments_one, ...prev]
+            : prev
+        );
       })
       .catch(err => {
         setError({
@@ -125,6 +130,8 @@ export const useComments = (
         });
       });
   };
+
+  console.log({ comments });
 
   return { comments, addComment, refetch: fetchComments, error };
 };

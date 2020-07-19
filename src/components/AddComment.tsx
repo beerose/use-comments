@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import {
   Box,
@@ -20,10 +20,26 @@ export interface AddCommentProps {
   onSubmit: (comment: Pick<Comment, 'author' | 'content'>) => void;
 }
 export const AddComment = ({ onSubmit }: AddCommentProps) => {
+  const [username, setUsername] = useState('');
+  const [comment, setComment] = useState('');
   return (
-    <Box as="form" onSubmit={e => e.preventDefault()}>
+    <Box
+      as="form"
+      onSubmit={e => {
+        console.log({ e });
+        e.preventDefault();
+        onSubmit({ content: comment, author: username });
+      }}
+    >
       <Label htmlFor="username">Username</Label>
-      <Input name="username" id="username" mb={3} placeholder="Jon Doe" />
+      <Input
+        name="username"
+        id="username"
+        mb={3}
+        placeholder="Jon Doe"
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+      />
       <Label htmlFor="comment">Comment</Label>
       <Textarea
         name="comment"
@@ -32,8 +48,12 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
         mb={3}
         fontFamily="body"
         placeholder="Tell me what you think 😊"
+        value={comment}
+        onChange={e => setComment(e.target.value)}
       />
-      <Button mb={3}>Add comment</Button>
+      <Button mb={3} type="submit" sx={{ cursor: 'pointer' }}>
+        Add comment
+      </Button>
       <Divider />
     </Box>
   );

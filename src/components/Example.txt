@@ -3,9 +3,10 @@
 const Comments = ({ postId }) => {
   const { comments, addComment, refetch, error } = useComments(
     'https://aleksandra-codes-comments.herokuapp.com/v1/graphql',
-    postId, 
+    postId,
     { limit: 5 }
   );
+
   return (
     <section>
       <AddComment onSubmit={addComment} />

@@ -78,8 +78,6 @@ export const reactLiveHome = {
   ],
 };
 
-const background = '#42374a';
-const foreground = '#f8f8f2';
 const red = '#ff5555';
 
 const StyledProvider = styled(LiveProvider)`
@@ -122,6 +120,8 @@ const StyledEditor = styled.div`
   margin-left: 20px;
   @media (max-width: 600px) {
     margin-left: 0;
+    margin-bottom: 30px;
+    height: 300px;
   }
   overflow: auto;
   border-radius: 10px;
@@ -129,6 +129,9 @@ const StyledEditor = styled.div`
   * > textarea:focus {
     outline: none;
   }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
 `;
 
 const StyledPreview = styled(LivePreview)`
@@ -141,6 +144,7 @@ const StyledPreview = styled(LivePreview)`
   @media (max-width: 600px) {
     padding-right: 0;
     padding-bottom: 20px;
+    max-height: inherit;
   }
   *:focus {
     outline-style: solid;
@@ -191,12 +195,14 @@ const formatDate = (dateStr: string) => {
   return Math.floor(seconds) + ' seconds ago';
 };
 
+const scope = { useComments, formatDate, AddComment };
+
 export const LiveEdit = ({ code }: { code: string }) => (
   <StyledProvider
     code={code}
     noInline={true}
     theme={reactLiveHome as any}
-    scope={{ useComments, formatDate, AddComment }}
+    scope={scope}
   >
     <LiveWrapper>
       <StyledPreview />

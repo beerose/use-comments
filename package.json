@@ -32,6 +32,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-live": "^2.2.2",
+    "react-toggle-dark-mode": "^1.0.2",
     "theme-ui": "^0.4.0-rc.1",
     "typescript": "^3.9.6"
   },

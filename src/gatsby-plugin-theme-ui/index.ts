@@ -46,14 +46,21 @@ const theme: Theme = {
     code: {
       ...nightOwl,
     },
+    a: {
+      cursor: 'pointer',
+      textDecoration: 'none',
+      nav: {
+        textDecoration: 'none',
+      },
+    },
     h1: {
       fontFamily: 'PT Serif',
-      fontSize: '60px',
+      fontSize: ['40px', '60px'],
       padding: 0,
+      lineHeight: ['50px', '70px'],
+      opacity: '0.8',
     },
   } as any,
 };
-
-console.log({ theme });
 
 export default theme;

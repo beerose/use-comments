@@ -1,16 +1,12 @@
 /* @jsx jsx */
 import { jsx, Styled as s, BaseStyles } from 'theme-ui';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import Prism from '@theme-ui/prism';
 import { Helmet } from 'react-helmet';
 
-import { Comments } from '../components/AddComment';
-// import Example from '../components/Example.tsx';
 import code from '!!raw-loader!../components/Example.txt';
 import { LiveEdit } from '../components/LiveEdit';
-import { Arrow } from '../components/Arrow.scg';
-import deploy from '../static/deploy.png';
-import { ToggleMode } from '../components/ToggleMode';
+import { Header } from '../components/Header';
+import { Hero } from '../components/Hero';
+import GettingStarted from './GettingStarted';
 
 export default function IndexPage() {
   return (
@@ -27,9 +23,9 @@ export default function IndexPage() {
       </Helmet>
       <div
         sx={{
-          padding: '40px 50px',
+          padding: ['20px', '20px 50px 40px'],
           '@media screen and (min-width: 1400px)': {
-            padding: '60px 350px',
+            padding: '20px 350px 60px',
           },
           display: 'flex',
           flexDirection: 'column',
@@ -38,12 +34,14 @@ export default function IndexPage() {
           margin: 0,
         }}
       >
-        <ToggleMode />
-        <h1 sx={{ paddingBottom: '30px' }}>Comments made easy</h1>
+        <Header />
+        <Hero />
         <LiveEdit code={code.trim()} sx={{}} />
-        {/* <h1>Add comments to your blog in three steps!</h1>
-        <h2>1. Create Hasura instance</h2>
-        <img src={deploy} /> */}
+        <GettingStarted />
+        <footer>
+          2020 ・ Built with 💜 by{' '}
+          <a href="http://twitter.com/aleksandrasays">Aleksandra Sikora</a>
+        </footer>
       </div>
     </BaseStyles>
   );

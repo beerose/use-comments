@@ -2,6 +2,7 @@
 
 import { jsx, Styled } from 'theme-ui';
 import Prism from '@theme-ui/prism';
+import { useState } from 'react';
 
 const withId = Component => props => {
   const id = String(props.children).toLowerCase().replace(' ', '-');
@@ -43,6 +44,8 @@ export const copyToClipboard = str => {
 export default {
   pre: props => props.children,
   code: props => {
+    const [copied, setCopied] = useState(false);
+
     return (
       <div sx={{ position: 'relative' }}>
         <button
@@ -67,14 +70,15 @@ export default {
           }}
           onClick={() => {
             const text = String(props.children);
+            setCopied(true);
             copyToClipboard(text).then(() => {
-              if (typeof window !== 'undefined') {
-                window.alert('copied "' + text.trim() + '"');
-              }
+              window.setTimeout(() => {
+                setCopied(false);
+              }, 1500);
             });
           }}
         >
-          Copy
+          {copied ? 'Copied!' : 'Copy'}
         </button>
         <Prism {...props} />
       </div>

@@ -1,8 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from 'theme-ui';
+import { jsx, Styled } from 'theme-ui';
 import Prism from '@theme-ui/prism';
-import { alpha } from '@theme-ui/color';
+
+const withId = Component => props => {
+  const id = String(props.children).toLowerCase().replace(' ', '-');
+  return <Component id={id} {...props} />;
+};
 
 // https://github.com/gatsbyjs/gatsby/blob/master/www/src/utils/copy-to-clipboard.js
 // https://www.freecodecamp.org/news/build-a-developer-blog-from-scratch-with-gatsby-and-mdx/
@@ -76,4 +80,7 @@ export default {
       </div>
     );
   },
+  h1: withId(Styled.h1),
+  h2: withId(Styled.h2),
+  h3: withId(Styled.h3),
 };

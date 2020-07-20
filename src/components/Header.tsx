@@ -30,7 +30,7 @@ export const Header = (props: ComponentProps<'header'>) => (
       useComments
     </Link>
     <Link
-      href="/"
+      href="/#getting-started"
       sx={{
         fontWeight: 'bold',
         bg: 'muted',

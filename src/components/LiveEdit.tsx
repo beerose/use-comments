@@ -114,7 +114,7 @@ const column = css`
 const StyledEditor = styled.div`
   background: #021727;
   color: white;
-  font-family: 'Source Code Pro', monospace;
+  font-family: ${p => p.theme.fonts!['monospace']};
   font-size: 1.1em;
   height: 715px;
   padding: 10px;
@@ -153,6 +153,7 @@ const StyledPreview = styled(LivePreview)`
   }
   ${column};
 
+  /* scrollbox */
   section > div {
     max-height: 382px;
     overflow-y: auto;

@@ -90,6 +90,8 @@ export const useComments = (
 
   useEffect(fetchComments, []);
 
+  // TODO: 'sending' | 'delivered-and-visible' | 'delivered-and-waiting' visual state
+  // TODO: Optimistic update
   const addComment = ({
     content,
     author,

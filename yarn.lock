@@ -6003,6 +6003,14 @@ gatsby-recipes@^0.1.52:
     ws "^7.3.0"
     xstate "^4.11.0"
 
+gatsby-remark-code-buttons@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-code-buttons/-/gatsby-remark-code-buttons-2.0.4.tgz#1fc02fd8beacab6a4c07e7b335095f0a7ff6bf55"
+  integrity sha512-VPwYnXEAC3rNffhc43E6KfFfV/xYrIzdlsNvcFarAukIvArB2AlXHC3BFfbYTjw93fio8UIfLZjQJweNwDQSoQ==
+  dependencies:
+    query-string "^6.5.0"
+    unist-util-visit "^1.4.0"
+
 gatsby-source-filesystem@^2.3.19:
   version "2.3.19"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.3.19.tgz#48871ca06d1dc431f415f72476f9358a59e6910c"
@@ -10094,7 +10102,7 @@ query-string@^5.0.1:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
-query-string@^6.13.1:
+query-string@^6.13.1, query-string@^6.5.0:
   version "6.13.1"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.1.tgz#d913ccfce3b4b3a713989fe6d39466d92e71ccad"
   integrity sha512-RfoButmcK+yCta1+FuU8REvisx1oEzhMKwhLUNcepQTPGcNMp1sIqjnfCtfnvGSQZQEhaBHvccujtWoUV3TTbA==
@@ -12447,7 +12455,7 @@ unist-util-visit@2.0.2, unist-util-visit@^2.0.0, unist-util-visit@^2.0.2:
     unist-util-is "^4.0.0"
     unist-util-visit-parents "^3.0.0"
 
-unist-util-visit@^1.1.0, unist-util-visit@^1.4.1:
+unist-util-visit@^1.1.0, unist-util-visit@^1.4.0, unist-util-visit@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-1.4.1.tgz#4724aaa8486e6ee6e26d7ff3c8685960d560b1e3"
   integrity sha512-AvGNk7Bb//EmJZyhtRUnNMEpId/AZ5Ph/KUpTI09WHQuDZHKovQ1oEv3mfmKpWKtoMzyMC4GLBm1Zy5k12fjIw==

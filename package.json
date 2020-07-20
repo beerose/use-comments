@@ -28,6 +28,7 @@
     "gatsby-plugin-mdx": "^1.2.26",
     "gatsby-plugin-theme-ui": "^0.4.0-rc.1",
     "gatsby-plugin-typescript": "^2.4.15",
+    "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-source-filesystem": "^2.3.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -1,17 +1,16 @@
 import { deep, future } from '@theme-ui/presets';
 import nightOwl from '@theme-ui/prism/presets/night-owl.json';
 import { Theme, merge } from 'theme-ui';
-import { alpha } from '@theme-ui/color';
+import { alpha, lighten } from '@theme-ui/color';
 
 const theme: Theme = merge(future as Theme, {
   initialColorModeName: 'light',
   useColorSchemeMediaQuery: true,
   colors: {
-    // 'button-text': future.colors.background,
     modes: {
       dark: {
         ...deep.colors,
-        // 'button-text': deep.colors.background,
+        text: 'hsl(210, 60%, 97%)',
       },
     },
   },
@@ -92,7 +91,7 @@ const theme: Theme = merge(future as Theme, {
       fontSize: ['40px', '60px'],
       padding: 0,
       lineHeight: ['50px', '70px'],
-      opacity: '0.8',
+      color: lighten('text', 0.2),
     },
     h2: {
       marginTop: 0,
@@ -131,8 +130,16 @@ const theme: Theme = merge(future as Theme, {
     primary: {
       fontFamily: 'inherit',
       fontWeight: 'bold',
+      cursor: 'pointer',
+      transition: 'transform 150ms linear',
+      ':hover, :focus': {
+        transform: 'translateY(-0.125rem)',
+      },
       '&&': {
         color: 'background',
+        ':hover, :focus': {
+          textDecoration: 'none',
+        },
       },
     },
   },

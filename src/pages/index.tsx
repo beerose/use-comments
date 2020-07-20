@@ -1,12 +1,23 @@
 /* @jsx jsx */
 import { jsx, Styled as s, BaseStyles } from 'theme-ui';
 import { Helmet } from 'react-helmet';
+import { Global } from '@emotion/core';
 
-import code from '!!raw-loader!../components/Example.txt';
+import code from '!!raw-loader!../components/Example.jsx';
 import { LiveEdit } from '../components/LiveEdit';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import GettingStarted from './GettingStarted';
+import GettingStarted from '../components/GettingStarted.mdx';
+
+const Section: React.FC<React.ComponentProps<'section'>> = props => (
+  <section
+    sx={{
+      px: [3, 3, 3, 4],
+      py: 4,
+    }}
+    {...props}
+  />
+);
 
 export default function IndexPage() {
   return (
@@ -20,13 +31,15 @@ export default function IndexPage() {
           href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>"
+        />
       </Helmet>
+      <Global styles={{ html: { scrollBehavior: 'smooth' } }} />
       <div
         sx={{
-          padding: ['20px', '20px 50px 40px'],
-          '@media screen and (min-width: 1400px)': {
-            padding: '20px 350px 60px',
-          },
+          py: 3,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -34,13 +47,20 @@ export default function IndexPage() {
           margin: 0,
         }}
       >
-        <Header />
-        <Hero />
-        <LiveEdit code={code.trim()} sx={{}} />
-        <GettingStarted />
-        <footer>
-          2020 ・ Built with 💜 by{' '}
-          <a href="http://twitter.com/aleksandrasays">Aleksandra Sikora</a>
+        <Header sx={{ px: 3 }} />
+        <Section>
+          <Hero />
+        </Section>
+        <Section>
+          <LiveEdit code={code.trim()} sx={{}} />
+        </Section>
+        <Section>
+          <GettingStarted />
+        </Section>
+        <footer sx={{ py: 4 }}>
+          © 2020 ・ Built with 💜 by{' '}
+          <a href="https://twitter.com/aleksandrasays">Aleksandra Sikora</a>・
+          Powered by <a href="https://hasura.io">Hasura</a>
         </footer>
       </div>
     </BaseStyles>

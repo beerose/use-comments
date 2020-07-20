@@ -2,8 +2,9 @@
 import { jsx, Link } from 'theme-ui';
 import { ToggleMode } from './ToggleMode';
 import { GitHub } from './Github';
+import { ComponentProps } from 'react';
 
-export const Header = () => (
+export const Header = (props: ComponentProps<'header'>) => (
   <header
     sx={{
       display: 'flex',
@@ -17,6 +18,7 @@ export const Header = () => (
         color: 'text',
       },
     }}
+    {...props}
   >
     <Link
       href="/"
@@ -28,7 +30,7 @@ export const Header = () => (
       useComments
     </Link>
     <Link
-      href="/"
+      href="/#getting-started"
       sx={{
         fontWeight: 'bold',
         bg: 'muted',

@@ -2,6 +2,18 @@ module.exports = {
   plugins: [
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-typescript',
-    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-code-buttons',
+            options: {
+              toasterText: 'Copied! 📋',
+            },
+          },
+        ],
+      },
+    },
   ],
 };

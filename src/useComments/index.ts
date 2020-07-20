@@ -58,7 +58,7 @@ export const useComments = (
     fetch(hasuraUrl, {
       method: 'POST',
       headers: {
-        'x-hasura-role': 'user',
+        'x-hasura-role': 'anonymous',
       },
       body: JSON.stringify({
         query: getCommentsQuery,
@@ -90,6 +90,8 @@ export const useComments = (
 
   useEffect(fetchComments, []);
 
+  // TODO: 'sending' | 'delivered-and-visible' | 'delivered-and-waiting' visual state
+  // TODO: Optimistic update
   const addComment = ({
     content,
     author,

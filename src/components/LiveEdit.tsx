@@ -4,8 +4,9 @@ import styled from '@emotion/styled';
 import { css } from 'theme-ui';
 import { useComments } from '../useComments';
 import { AddComment } from './AddComment';
+import type { PrismTheme } from 'prism-react-renderer';
 
-export const reactLiveHome = {
+export const prismTheme: PrismTheme = {
   plain: {
     color: '#e7d2ed',
   },
@@ -72,7 +73,7 @@ export const reactLiveHome = {
     {
       types: ['punctuation', 'symbol'],
       style: {
-        opacity: '0.7',
+        opacity: 0.7,
       },
     },
   ],
@@ -113,7 +114,7 @@ const column = css`
 const StyledEditor = styled.div`
   background: #021727;
   color: white;
-  font-family: 'Source Code Pro', monospace;
+  font-family: ${p => p.theme.fonts!['monospace']};
   font-size: 1.1em;
   height: 715px;
   padding: 10px;
@@ -124,7 +125,7 @@ const StyledEditor = styled.div`
     height: 300px;
   }
   overflow: auto;
-  border-radius: 10px;
+  border-radius: ${p => p.theme.radii!['medium']};
   ${column};
   * > textarea:focus {
     outline: none;
@@ -137,7 +138,6 @@ const StyledEditor = styled.div`
 const StyledPreview = styled(LivePreview)`
   position: relative;
   background: transparent;
-  max-height: 715px;
   overflow: hidden;
   display: flex;
   padding-right: 20px;
@@ -152,6 +152,13 @@ const StyledPreview = styled(LivePreview)`
     border-color: ${({ theme }) => theme.colors?.primary};
   }
   ${column};
+
+  /* scrollbox */
+  section > div {
+    max-height: 382px;
+    overflow-y: auto;
+    overflow-y: overlay;
+  }
 `;
 
 const StyledError = styled(LiveError)`
@@ -198,12 +205,7 @@ const formatDate = (dateStr: string) => {
 const scope = { useComments, formatDate, AddComment };
 
 export const LiveEdit = ({ code }: { code: string }) => (
-  <StyledProvider
-    code={code}
-    noInline={true}
-    theme={reactLiveHome as any}
-    scope={scope}
-  >
+  <StyledProvider code={code} noInline={true} theme={prismTheme} scope={scope}>
     <LiveWrapper>
       <StyledPreview />
       <StyledEditor>

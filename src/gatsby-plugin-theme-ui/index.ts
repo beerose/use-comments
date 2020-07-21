@@ -14,6 +14,9 @@ const theme: Theme = merge(future as Theme, {
       },
     },
   },
+  sizes: {
+    container: 1100,
+  },
   fonts: {
     heading: 'PT Serif',
     body: 'system-ui, sans-serif',

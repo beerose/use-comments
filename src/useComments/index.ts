@@ -1,35 +1,38 @@
 import { useState, useEffect } from 'react';
 
 export interface Comment {
-  id: number;
-  post: string;
+  post_id: string;
   author: string;
   content: string;
   created_at: string;
-  parent_comment: number;
+  status?: CommentStatus;
 }
+
+export type CommentStatus =
+  | 'sending'
+  | 'added'
+  | 'delivered-awaiting-approval'
+  | 'failed';
 
 const getCommentsQuery = `
 query GetComments($postId: String!, $limit: Int, $offset: Int) {
-  comments(where: {post: {_eq: $postId}}, limit: $limit, offset: $offset, order_by: {created_at: desc}) {
-    id
+  comments(where: {post_id: {_eq: $postId}}, limit: $limit, offset: $offset, order_by: {created_at: desc}) {
+    post_id
+    author
     content
     created_at
-    parent_comment
-    post
-    author
   }
 }
 `;
 
 const addNewCommentMutation = `
 mutation AddNewComment($postId: String!, $author: String!, $content: String!) {
-  insert_comments_one(object: {author: $author, content: $content, post: $postId}) {
-    id
-    content
+  insert_comments_one(object: {author: $author, content: $content, post_id: $postId}) {
+    post_id
     author
+    content
     created_at
-    post
+    hidden
   }
 }
 `;
@@ -90,12 +93,21 @@ export const useComments = (
 
   useEffect(fetchComments, []);
 
-  // TODO: 'sending' | 'delivered-and-visible' | 'delivered-and-waiting' visual state
-  // TODO: Optimistic update
   const addComment = ({
     content,
     author,
   }: Pick<Comment, 'content' | 'author'>) => {
+    const createdAt = new Date().toDateString();
+
+    const newComment: Comment = {
+      author,
+      content,
+      post_id: postId,
+      created_at: createdAt,
+      status: 'sending',
+    };
+    setComments(prev => [newComment, ...prev]);
+
     fetch(hasuraUrl, {
       method: 'POST',
       headers: {
@@ -119,10 +131,19 @@ export const useComments = (
           });
           return;
         }
+        const remoteComment = res.data.insert_comments_one;
         setComments(prev =>
-          res.data.insert_comments_one
-            ? [res.data.insert_comments_one, ...prev]
-            : prev
+          prev.map(
+            (x): Comment =>
+              x === newComment
+                ? {
+                    ...remoteComment,
+                    status: remoteComment.hidden
+                      ? 'delivered-awaiting-approval'
+                      : 'added',
+                  }
+                : x
+          )
         );
       })
       .catch(err => {
@@ -130,10 +151,19 @@ export const useComments = (
           error: errorMessage,
           details: err,
         });
+        setComments(prev =>
+          prev.map(
+            (x): Comment =>
+              x === newComment
+                ? {
+                    ...newComment,
+                    status: 'failed',
+                  }
+                : x
+          )
+        );
       });
   };
-
-  console.log({ comments });
 
   return { comments, addComment, refetch: fetchComments, error };
 };

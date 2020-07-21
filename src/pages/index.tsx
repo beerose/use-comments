@@ -1,5 +1,5 @@
 /* @jsx jsx */
-import { jsx, Styled as s, BaseStyles } from 'theme-ui';
+import { jsx, Styled as s, BaseStyles, Container } from 'theme-ui';
 import { Helmet } from 'react-helmet';
 import { Global } from '@emotion/core';
 
@@ -14,9 +14,12 @@ const Section: React.FC<React.ComponentProps<'section'>> = props => (
     sx={{
       px: [3, 3, 3, 4],
       py: 4,
+      width: '800px',
     }}
     {...props}
-  />
+  >
+    <Container>{props.children}</Container>
+  </section>
 );
 
 export default function IndexPage() {
@@ -57,7 +60,7 @@ export default function IndexPage() {
         <Section>
           <GettingStarted />
         </Section>
-        <footer sx={{ py: 4 }}>
+        <footer sx={{ py: 4, textAlign: 'center' }}>
           © 2020 ・ Built with 💜 by{' '}
           <a href="https://twitter.com/aleksandrasays">Aleksandra Sikora</a>・
           Powered by <a href="https://hasura.io">Hasura</a>

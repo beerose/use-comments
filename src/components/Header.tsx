@@ -9,11 +9,12 @@ export const Header = (props: ComponentProps<'header'>) => (
     sx={{
       display: 'flex',
       variant: 'styles.header',
-      width: '100%',
       paddingBottom: [10, 20],
       fontSize: '14px',
       alignItems: 'center',
       color: 'text',
+      width: 'container',
+      maxWidth: '100%',
       a: {
         color: 'text',
       },

@@ -2,7 +2,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from 'theme-ui';
-import { useComments } from '../useComments';
+import { useComments, CommentStatus } from '../useComments';
 import { AddComment } from './AddComment';
 import type { PrismTheme } from 'prism-react-renderer';
 
@@ -202,7 +202,18 @@ const formatDate = (dateStr: string) => {
   return Math.floor(seconds) + ' seconds ago';
 };
 
-const scope = { useComments, formatDate, AddComment };
+const formatStatus = (status: CommentStatus) => {
+  switch (status) {
+    case 'added':
+      return '👌';
+    case 'delivered-awaiting-approval':
+      return 'aa';
+    case 'sending':
+      return '✉️';
+  }
+};
+
+const scope = { useComments, formatDate, AddComment, formatStatus };
 
 export const LiveEdit = ({ code }: { code: string }) => (
   <StyledProvider code={code} noInline={true} theme={prismTheme} scope={scope}>

@@ -6,25 +6,26 @@ const Comments = ({ postId }) => {
     postId
   );
 
-  console.log({ count, loading });
-
   return (
     <section>
       <AddComment onSubmit={addComment} />
       <h3>{count} comments</h3>
-      <div>
-        {comments.map(({ author, content, created_at, status }) => (
-          <article key={created_at}>
-            <div>
-              {author}
-              {' ・ '}
-              <time dateTime={created_at}>{formatDate(created_at)}</time>
-              {status && ` ・ ${formatStatus(status)}`}
-            </div>
-            <p>{content}</p>
-          </article>
-        ))}
-      </div>
+      {loading ? (
+        'Loading...'
+      ) : (
+        <div>
+          {comments.map(({ author, content, created_at, status }) => (
+            <article key={created_at}>
+              <div>
+                {`${author} ・ `}
+                <time dateTime={created_at}>{formatDate(created_at)}</time>
+                {status && ` ・ ${formatStatus(status)}`}
+              </div>
+              <p>{content}</p>
+            </article>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

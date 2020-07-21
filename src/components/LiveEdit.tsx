@@ -199,6 +199,9 @@ const formatDate = (dateStr: string) => {
   if (interval > 1) {
     return interval + ' minutes ago';
   }
+  if (Math.floor(seconds) === 0) {
+    return 'now';
+  }
   return Math.floor(seconds) + ' seconds ago';
 };
 
@@ -207,7 +210,7 @@ const formatStatus = (status: CommentStatus) => {
     case 'added':
       return '👌';
     case 'delivered-awaiting-approval':
-      return 'aa';
+      return '🕑';
     case 'sending':
       return '✉️';
   }

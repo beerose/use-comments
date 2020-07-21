@@ -1,22 +1,20 @@
 // You can edit this! 😱
 
 const Comments = ({ postId }) => {
-  const {
-    comments,
-    addComment,
-  } = useComments(
+  const { comments, addComment, count, loading } = useComments(
     'https://aleksandra-codes-comments.herokuapp.com/v1/graphql',
-    postId,
-    { limit: 5 }
+    postId
   );
+
+  console.log({ count, loading });
 
   return (
     <section>
       <AddComment onSubmit={addComment} />
-      <h3>{comments.length} comments</h3>
+      <h3>{count} comments</h3>
       <div>
-        {comments.map(({ id, author, content, created_at, status }) => (
-          <article key={id}>
+        {comments.map(({ author, content, created_at, status }) => (
+          <article key={created_at}>
             <div>
               {author}
               {' ・ '}

@@ -8,6 +8,7 @@ export interface Comment {
   status?: CommentStatus;
 }
 
+// newly added comments
 export type CommentStatus =
   | 'sending'
   | 'added'
@@ -21,6 +22,11 @@ query GetComments($postId: String!, $limit: Int, $offset: Int) {
     author
     content
     created_at
+  }
+  comments_aggregate(where: {post_id: {_eq: $postId}}) {
+    aggregate {
+      count
+    }
   }
 }
 `;
@@ -55,9 +61,12 @@ export const useComments = (
   config?: UseCommentsConfig
 ) => {
   const [comments, setComments] = useState<Comment[]>([]);
+  const [count, setCount] = useState(0);
   const [error, setError] = useState<UseCommentsError | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchComments = () => {
+    setLoading(true);
     fetch(hasuraUrl, {
       method: 'POST',
       headers: {
@@ -79,15 +88,19 @@ export const useComments = (
             error: errorMessage,
             details: res.errors[0].message,
           });
+          setLoading(false);
           return;
         }
         setComments(res.data.comments);
+        setCount(res.data.comments_aggregate.aggregate.count);
+        setLoading(false);
       })
       .catch(err => {
         setError({
           error: errorMessage,
           details: err,
         });
+        setLoading(false);
       });
   };
 
@@ -165,5 +178,12 @@ export const useComments = (
       });
   };
 
-  return { comments, addComment, refetch: fetchComments, error };
+  return {
+    comments,
+    addComment,
+    refetch: fetchComments,
+    count,
+    loading,
+    error,
+  };
 };

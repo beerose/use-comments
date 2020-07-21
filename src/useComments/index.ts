@@ -1,14 +1,31 @@
 import { useState, useEffect } from 'react';
 
 export interface Comment {
-  post_id: string;
+  /** The string provided by the sender */
   author: string;
   content: string;
   created_at: string;
+  /**
+   * Needed for optimistic update.
+   * When the comment is submitted, it is `'sending'`.
+   * When the request succeeds and the comment is not hidden in the database, it turns into `'added'`.
+   * When the request succeeds and the comment is hidden and awaiting approval, we receive `'delivered-awaiting-approval'`.
+   * When the request fails, the status is `'failed'`. - You can use this information to prompt user to retry.
+   */
   status?: CommentStatus;
 }
 
-// newly added comments
+interface CommentInternal extends Comment {
+  post_id: string;
+}
+
+/**
+ * Needed for optimistic update.
+ * When the comment is submitted, it is `'sending'`.
+ * When the request succeeds and the comment is not hidden in the database, it turns into `'added'`.
+ * When the request succeeds and the comment is hidden and awaiting approval, we receive `'delivered-awaiting-approval'`.
+ * When the request fails, the status is `'failed'`. - You can use this information to prompt user to retry.
+ */
 export type CommentStatus =
   | 'sending'
   | 'added'
@@ -135,7 +152,7 @@ export const useComments = (
   }: Pick<Comment, 'content' | 'author'>) => {
     const createdAt = new Date().toDateString();
 
-    const newComment: Comment = {
+    const newComment: CommentInternal = {
       author,
       content,
       post_id: postId,
@@ -143,6 +160,7 @@ export const useComments = (
       status: 'sending',
     };
     setComments(prev => [newComment, ...prev]);
+    setCount(prev => prev++);
 
     fetch(hasuraUrl, {
       method: 'POST',

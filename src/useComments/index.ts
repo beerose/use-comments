@@ -55,6 +55,13 @@ export interface UseCommentsConfig {
   limit?: number;
   offset?: number;
 }
+
+/**
+ *
+ * @param hasuraUrl
+ * @param postId
+ * @param config
+ */
 export const useComments = (
   hasuraUrl: string,
   postId: string,
@@ -104,7 +111,7 @@ export const useComments = (
       });
   };
 
-  useEffect(fetchComments, []);
+  useEffect(fetchComments, [config?.limit, config?.offset]);
 
   const addComment = ({
     content,

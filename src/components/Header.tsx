@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { Link as GatsbyLink } from 'gatsby';
 import { jsx, Link } from 'theme-ui';
 import { ToggleMode } from './ToggleMode';
 import { ComponentProps } from 'react';
@@ -20,27 +21,26 @@ export const Header = (props: ComponentProps<'header'>) => (
     sx={{
       display: 'flex',
       variant: 'styles.header',
-      paddingBottom: [10, 20],
+      px: 3,
+      pb: 2,
       fontSize: '14px',
       alignItems: 'center',
       color: 'text',
-      width: 'container',
+      width: t => t.sizes.container + 2 * t.space['3'],
       maxWidth: '100%',
       a: {
         color: 'text',
+        mr: 3,
+        ':first-of-type': {
+          mr: [3, 5],
+        },
       },
     }}
     {...props}
   >
-    <Link
-      href="/"
-      sx={{
-        variant: 'styles.navlink',
-        mr: 3,
-      }}
-    >
+    <GatsbyLink to="/" sx={{ display: ['none', 'unset'] }}>
       useComments
-    </Link>
+    </GatsbyLink>
     <Link
       href="/#getting-started"
       sx={{
@@ -53,10 +53,11 @@ export const Header = (props: ComponentProps<'header'>) => (
     >
       Getting Started
     </Link>
+    <GatsbyLink to="/api">API Reference</GatsbyLink>
     <div sx={{ mx: 'auto' }} />
     <Link
       href="https://github.com/beerose/use-comments"
-      sx={{ mr: 3, display: 'flex' }}
+      sx={{ display: 'flex' }}
     >
       <GitHub />
     </Link>

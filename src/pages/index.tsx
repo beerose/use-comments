@@ -50,7 +50,7 @@ export default function IndexPage() {
           margin: 0,
         }}
       >
-        <Header sx={{ px: 3 }} />
+        <Header />
         <Section>
           <Hero />
         </Section>

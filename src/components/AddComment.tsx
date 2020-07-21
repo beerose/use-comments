@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+/** @jsx jsx */
+import { useState } from 'react';
 
-import { Box, Button, Label, Input, Textarea, Divider } from 'theme-ui';
+import {
+  Box,
+  Button,
+  Label,
+  Input,
+  Textarea,
+  Divider,
+  jsx,
+  Message,
+} from 'theme-ui';
 
-import { useComments, Comment } from '../useComments';
+import { Comment } from '../useComments';
 
 export interface AddCommentProps {
   onSubmit: (comment: Pick<Comment, 'author' | 'content'>) => void;
@@ -10,6 +20,8 @@ export interface AddCommentProps {
 export const AddComment = ({ onSubmit }: AddCommentProps) => {
   const [username, setUsername] = useState('');
   const [comment, setComment] = useState('');
+  const [added, setAdded] = useState(false);
+
   return (
     <Box
       as="form"
@@ -17,6 +29,7 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
         console.log({ e });
         e.preventDefault();
         onSubmit({ content: comment, author: username });
+        setAdded(true);
       }}
     >
       <Label htmlFor="username">Username</Label>
@@ -41,6 +54,18 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
       <Button type="submit" sx={{ mb: 3 }}>
         Add comment
       </Button>
+      {added && (
+        <Message
+          variant="primary"
+          sx={{
+            fontSize: '0.8em',
+          }}
+        >
+          Thanks for your comment! 😊 Your comment status is{' '}
+          <i>waiting for approval</i>. Comments on this website need to be
+          approved before they are visible for others.
+        </Message>
+      )}
       <Divider />
     </Box>
   );

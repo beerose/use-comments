@@ -1,9 +1,20 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
-  "version": "0.1.0",
-  "license": "0BSD",
+  "name": "use-comments",
+  "private": false,
+  "description": "",
+  "version": "0.1.2",
+  "license": "MIT",
+  "author": {
+    "name": "Aleksandra Sikora",
+    "url": "https://github.com/beerose"
+  },
+  "main": "dist/index.js",
+  "source": "src/useComments/index.ts",
+  "types": "dist/useComments/index.d.ts",
+  "module": "dist/useComments/index.esm.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -11,9 +22,14 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "dev": "microbundle watch",
+    "build:microbundle": "microbundle --no-compress --tsconfig tsconfig.lib.json"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "react": "*"
+  },
+  "devDependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.6.7",
@@ -30,22 +46,22 @@
     "gatsby-plugin-typescript": "^2.4.15",
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-source-filesystem": "^2.3.19",
-    "react": "^16.13.1",
+    "prettier": "2.0.5",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-live": "^2.2.2",
     "react-toggle-dark-mode": "^1.0.2",
     "theme-ui": "^0.4.0-rc.1",
+    "microbundle": "^0.12.3",
     "typescript": "^3.9.6"
-  },
-  "devDependencies": {
-    "prettier": "2.0.5"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/beerose/use-comments"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+    "url": "https://github.com/beerose/use-comments/issues"
+  },
+  "homepage": "https://github.com/beerose/use-comments#readme",
+  "keywords": []
 }

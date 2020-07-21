@@ -146,6 +146,11 @@ const theme: Theme = merge(future as Theme, {
       },
     },
   },
+  messages: {
+    primary: {
+      backgroundColor: alpha('secondary', 0.2),
+    },
+  },
 });
 
 export default theme;

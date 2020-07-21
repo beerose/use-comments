@@ -4,16 +4,7 @@ module.exports = {
     'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-plugin-mdx',
-      options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-code-buttons',
-            options: {
-              toasterText: 'Copied! 📋',
-            },
-          },
-        ],
-      },
+      options: {},
     },
   ],
 };

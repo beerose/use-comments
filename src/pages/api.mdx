@@ -6,5 +6,83 @@ import { Section } from '../components/Section';
 
 # API Reference
 
+## `useComments`
+
+Fetches comments from Hasura backend specified in `hasuraUrl` on mount and
+whenever `config.limit` or `config.offset` change.
+
+### Parameters
+
+- **hasuraUrl**: URL of the Hasura instance
+- **postId**: Comments will be fetched for the post with id `postId`
+- **config**: Configurable offset and limit for the GraphQL query to Hasura. See
+  [`UseCommentsConfig`](#use-comments-config)
+
+### TypeScript Signature
+
+```ts
+const useComments: (
+  hasuraUrl: string,
+  postId: string,
+  config?: UseCommentsConfig | undefined
+) => UseComentsResult;
+```
+
+### Returns `UseComentsResult`
+
+```ts
+interface UseComentsResult {
+  comments: Comment[];
+  addComment: ({
+    content,
+    author,
+  }: Pick<Comment, 'content' | 'author'>) => void;
+  refetch: () => void;
+  count: number;
+  loading: boolean;
+  error: UseCommentsError | null;
+}
+```
+
+## `Comment`
+
+```ts
+export interface Comment {
+  post_id: string;
+  author: string;
+  content: string;
+  created_at: string;
+  status?: CommentStatus;
+}
+```
+
+## `UseCommentsConfig`
+
+```ts
+export interface UseCommentsConfig {
+  limit?: number;
+  offset?: number;
+}
+```
+
+## `CommentStatus`
+
+```ts
+export declare type CommentStatus =
+  | 'sending'
+  | 'added'
+  | 'delivered-awaiting-approval'
+  | 'failed';
+```
+
+## `UseCommentsError`
+
+```ts
+interface UseCommentsError {
+  error: string;
+  details: string;
+}
+```
+
 </Section>
 </Page>

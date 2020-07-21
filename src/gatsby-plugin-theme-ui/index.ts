@@ -60,10 +60,7 @@ const theme: Theme = merge(future as Theme, {
     },
     p: {
       my: 2,
-      code: {
-        bg: 'muted',
-        color: 'text',
-      },
+      width: '70ch',
     },
     code: {
       ...nightOwl,
@@ -71,6 +68,12 @@ const theme: Theme = merge(future as Theme, {
       fontSize: '0.8em',
       padding: '4px 6px',
       borderRadius: 'tiny',
+    },
+    inlineCode: {
+      '&&': {
+        bg: 'muted',
+        color: 'text',
+      },
     },
     pre: {
       padding: '8px 10px',

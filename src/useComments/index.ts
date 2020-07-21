@@ -56,17 +56,33 @@ export interface UseCommentsConfig {
   offset?: number;
 }
 
+export interface UseComentsResult {
+  comments: Comment[];
+  addComment: ({
+    content,
+    author,
+  }: Pick<Comment, 'content' | 'author'>) => void;
+  refetch: () => void;
+  count: number;
+  loading: boolean;
+  error: UseCommentsError | null;
+}
+
 /**
+ * Fetches comments from Hasura backend specified in `hasuraUrl` on mount and whenever
+ * `config.limit` or `config.offset` change.
  *
- * @param hasuraUrl
- * @param postId
- * @param config
+ * @param hasuraUrl URL of the Hasura instance
+ * @param postId Comments will be fetched for the post with id `postId`
+ * @param config Configurable offset and limit for the GraphQL query to Hasura
+ * @returns comments for giben post, aggregated count of all comments, error,
+ *          loading state and a function to refetch data from backend.
  */
 export const useComments = (
   hasuraUrl: string,
   postId: string,
   config?: UseCommentsConfig
-) => {
+): UseComentsResult => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [count, setCount] = useState(0);
   const [error, setError] = useState<UseCommentsError | null>(null);

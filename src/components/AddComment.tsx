@@ -63,7 +63,7 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
         >
           Thanks for your comment! 😊 Your comment status is{' '}
           <i>waiting for approval</i>. Comments on this website need to be
-          approved before they are visible for others.
+          approved before they are visible to others.
         </Message>
       )}
       <Divider />

@@ -61,6 +61,7 @@ const theme: Theme = merge(future as Theme, {
     p: {
       my: 2,
       width: '70ch',
+      maxWidth: '100%',
     },
     code: {
       ...nightOwl,
@@ -130,6 +131,11 @@ const theme: Theme = merge(future as Theme, {
         // border: '1px solid',
         bg: alpha('secondary', 0.2),
       },
+    },
+    img: {
+      marginY: '15px',
+      borderRadius: '5px',
+      boxShadow: '0 6px 42px rgba(0,0,0,0.12)',
     },
   },
   buttons: {

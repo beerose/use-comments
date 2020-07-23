@@ -15,43 +15,62 @@ import { Button } from 'theme-ui';
      Deploy Hasura to Heroku
    </Button>
 
-   We need to keep all of these comments somewhere, right? Hasura handles this for us.
+   We need to keep all of these comments somewhere, right? Hasura handles this
+   for us.
 
-   Check out [the docs][hasura-docs] for more details. You can find more options for one-click deployment there.
+   Check out [the docs][hasura-docs] for more details. You can find more options
+   for one-click deployment there.
 
    [hasura]: https://hasura.io
-   [hasura-docs]: https://hasura.io/docs/1.0/graphql/manual/guides/deployment/heroku-one-click.html
+
+   [hasura-docs]:
+   https://hasura.io/docs/1.0/graphql/manual/guides/deployment/heroku-one-click.html
 
 2. **Set config vars in Heroku**
 
-   <!-- https://dashboard.heroku.com/apps/aleksandra-codes-comments/settings -->
+   In order to use our Hasura backend we need to set two enviromental variables
+   in Heroku.
+   [`HASURA_GRAPHQL_ADMIN_SECRET`](https://hasura.io/docs/1.0/graphql/manual/deployment/heroku/securing-graphql-endpoint.html#heroku-secure)
+   will make sure that your GraphQL endpoint and the Hasura console are not
+   publicly accessible.
+   [`HASURA_GRAPHQL_UNAUTHORIZED_ROLE`](https://hasura.io/docs/1.0/graphql/manual/auth/authentication/unauthenticated-access.html#unauthenticated-access)
+   will allow unauthenticated (non-logged in) users add and view comments.
 
-3.  **Import database schema and metadata**
+   <img width="700" src="./heroku-env.png" />
 
-   <!-- TODO: Link to /hasura/up.sql -->
-   <!-- TODO: Research if this step can be skipped by deploying your own Heroku image -->
+3. **Import database schema and metadata**
 
-4.  **Install `use-comments`**
+   In the next step we need to import database schema. Click
+   [here](https://github.com/beerose/use-comments/blob/master/hasura/up.sql) and
+   copy paste the content.
 
-    <!-- TODO: Links to copy code snippets -->
+   <img width="600" src="./sql.png" />
 
-    ```
-    npm install use-comments
-    ```
+   We also need to import Hasura metadata to set all the permissions. Save this
+   file, and import it in Hasura Console:
 
-    ```
-    yarn add use-comments
-    ```
+   <img width="300" src="./metadata.png" />
 
-    or add it from CDN
+4. **Install `use-comments`**
 
-    ```
-    TODO: Example with unpkg and global variable `useComments`.
-    ```
+```
+npm install use-comments
+```
 
-5.  **Create beautiful UI for your comments**
+```
+yarn add use-comments
+```
 
-    Start off from one of the examples or write it from scratch.
+or add it from CDN
+
+```
+<srcript src="https://unpkg.com/use-comments@0.1.2/dist/index.modern.js" />
+TODO: Example with unpkg and global variable `useComments`.
+```
+
+5. **Create beautiful UI for your comments**
+
+   Start off from one of the examples or write it from scratch.
 
    <!-- TODO: CodeSandbox examples: Theme UI, Tailwind -->
    <!-- TODO: Buttons to copy source here -->

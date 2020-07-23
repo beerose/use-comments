@@ -47,7 +47,7 @@ export default {
     const [copied, setCopied] = useState(false);
 
     return (
-      <div sx={{ position: 'relative', width: '90ch' }}>
+      <div sx={{ position: 'relative', width: '90ch', maxWidth: '100%' }}>
         <button
           sx={{
             appearance: 'none',

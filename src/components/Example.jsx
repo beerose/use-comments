@@ -2,7 +2,7 @@
 
 const Comments = ({ postId }) => {
   const { comments, addComment, count, loading } = useComments(
-    'https://aleksandra-codes-comments.herokuapp.com/v1/graphql',
+    'https://use-comments-app.herokuapp.com/v1/graphql',
     postId
   );
 
@@ -11,7 +11,7 @@ const Comments = ({ postId }) => {
       <AddComment onSubmit={addComment} />
       <h3>{count} comments</h3>
       {loading ? (
-        'Loading...'
+        <Spinner />
       ) : (
         <div>
           {comments.map(({ author, content, created_at, status }) => (

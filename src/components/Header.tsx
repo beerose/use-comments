@@ -41,8 +41,8 @@ export const Header = (props: ComponentProps<'header'>) => (
     <GatsbyLink to="/" sx={{ display: ['none', 'unset'] }}>
       useComments
     </GatsbyLink>
-    <Link
-      href="/#getting-started"
+    <GatsbyLink
+      to="/#getting-started"
       sx={{
         fontWeight: 'bold',
         bg: 'muted',
@@ -52,7 +52,7 @@ export const Header = (props: ComponentProps<'header'>) => (
       }}
     >
       Getting Started
-    </Link>
+    </GatsbyLink>
     <GatsbyLink to="/api">API Reference</GatsbyLink>
     <div sx={{ mx: 'auto' }} />
     <Link

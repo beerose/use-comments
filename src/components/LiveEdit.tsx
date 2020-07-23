@@ -1,7 +1,7 @@
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from 'theme-ui';
+import { css, Spinner } from 'theme-ui';
 import { useComments, CommentStatus } from '../useComments';
 import { AddComment } from './AddComment';
 import type { PrismTheme } from 'prism-react-renderer';
@@ -216,7 +216,7 @@ const formatStatus = (status: CommentStatus) => {
   }
 };
 
-const scope = { useComments, formatDate, AddComment, formatStatus };
+const scope = { useComments, formatDate, AddComment, formatStatus, Spinner };
 
 export const LiveEdit = ({ code }: { code: string }) => (
   <StyledProvider code={code} noInline={true} theme={prismTheme} scope={scope}>

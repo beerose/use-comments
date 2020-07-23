@@ -55,6 +55,7 @@ const theme: Theme = merge(future as Theme, {
       fontFamily: 'body',
     },
     section: {
+      paddingX: '2px',
       overflow: 'scroll',
       width: '100%',
     },
@@ -152,6 +153,22 @@ const theme: Theme = merge(future as Theme, {
         ':hover, :focus': {
           textDecoration: 'none',
         },
+      },
+    },
+  },
+  forms: {
+    input: {
+      '&:focus': {
+        borderColor: 'primary',
+        boxShadow: t => `0 0 0 2px ${t.colors.primary}`,
+        outline: 'none',
+      },
+    },
+    textarea: {
+      '&:focus': {
+        borderColor: 'primary',
+        boxShadow: t => `0 0 0 2px ${t.colors.primary}`,
+        outline: 'none',
       },
     },
   },

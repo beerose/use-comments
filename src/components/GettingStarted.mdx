@@ -51,8 +51,9 @@ less than 5 minutes 🚀
 
    <img width="600" src="./sql.png" />
 
-   We also need to import Hasura metadata to set all the permissions. Save this
-   file, and import it in Hasura Console:
+   We also need to import Hasura metadata to set all the permissions. Save
+   [this file](https://github.com/beerose/use-comments/blob/master/hasura/metadata.json),
+   and import it in Hasura Console:
 
    <img width="300" src="./metadata.png" />
 
@@ -66,7 +67,16 @@ less than 5 minutes 🚀
    yarn add use-comments
    ```
 
-   or add it from CDN
+   ```jsx
+   import { useComments, CommentStatus } from 'use-comments';
+
+   const { comments, count, loading, refetch, error } = useComments(
+     hasuraUrl,
+     'landing-page'
+   );
+   ```
+
+   Or add it from CDN:
 
    ```js
    <script
@@ -77,12 +87,16 @@ less than 5 minutes 🚀
    <script type="module" async>
       const { useComments } = useComments;
 
-      const { comments, error } = useComments(
-        'https://use-comments-app.herokuapp.com/v1/graphql',
+      const { comments, count, loading, refetch, error } = useComments(
+        hasuraUrl,
         'landing-page',
       );
    </script>
    ```
+
+   You can find your `hasuraUrl` in the Hasura Console:
+
+   <img width="500" src="./url.png" />
 
 5. **Create beautiful UI for your comments**
 

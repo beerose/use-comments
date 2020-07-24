@@ -30,6 +30,8 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
         e.preventDefault();
         onSubmit({ content: comment, author: username });
         setAdded(true);
+        setComment('');
+        setUsername('');
       }}
     >
       <Label htmlFor="username">Username</Label>

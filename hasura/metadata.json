@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "tables": [
+    {
+      "table": {
+        "schema": "public",
+        "name": "comments"
+      },
+      "insert_permissions": [
+        {
+          "role": "anonymous",
+          "permission": {
+            "check": {},
+            "columns": [
+              "author",
+              "content",
+              "post_id"
+            ],
+            "backend_only": false
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "anonymous",
+          "permission": {
+            "columns": [
+              "author",
+              "content",
+              "created_at",
+              "hidden",
+              "id",
+              "post_id"
+            ],
+            "filter": {
+              "hidden": {
+                "_ne": true
+              }
+            },
+            "allow_aggregations": true
+          }
+        }
+      ]
+    }
+  ]
+}

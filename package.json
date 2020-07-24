@@ -30,6 +30,8 @@
     "react": "*"
   },
   "devDependencies": {
+    "@types/react-hamburger-menu": "^0.0.3",
+    "react-hamburger-menu": "^1.2.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.6.7",
@@ -63,9 +65,11 @@
     "url": "https://github.com/beerose/use-comments/issues"
   },
   "homepage": "https://github.com/beerose/use-comments#readme",
-  "keywords": [],
-  "dependencies": {
-    "@types/react-hamburger-menu": "^0.0.3",
-    "react-hamburger-menu": "^1.2.1"
-  }
+  "keywords": [
+    "react",
+    "hasura",
+    "blog",
+    "hook",
+    "comments"
+  ]
 }

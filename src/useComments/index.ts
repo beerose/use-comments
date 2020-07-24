@@ -92,7 +92,7 @@ export interface UseComentsResult {
  * @param hasuraUrl URL of the Hasura instance
  * @param postId Comments will be fetched for the post with id `postId`
  * @param config Configurable offset and limit for the GraphQL query to Hasura
- * @returns comments for giben post, aggregated count of all comments, error,
+ * @returns comments for given post, aggregated count of all comments, error,
  *          loading state and a function to refetch data from backend.
  */
 export const useComments = (

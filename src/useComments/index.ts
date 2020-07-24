@@ -160,7 +160,7 @@ export const useComments = (
       status: 'sending',
     };
     setComments(prev => [newComment, ...prev]);
-    setCount(prev => prev++);
+    setCount(prev => ++prev);
 
     fetch(hasuraUrl, {
       method: 'POST',

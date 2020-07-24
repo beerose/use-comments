@@ -62,7 +62,7 @@ const theme: Theme = merge(future as Theme, {
       width: '100%',
       px: [3, 3, 3, 4],
       section: {
-        px: 0,
+        px: '2px',
       },
     },
     p: {
@@ -158,6 +158,11 @@ const theme: Theme = merge(future as Theme, {
       transition: 'transform 150ms linear',
       ':hover, :focus': {
         transform: 'translateY(-0.125rem)',
+      },
+      ':focus': {
+        // borderColor: 'background',
+        // boxShadow: t => `0 0 0 2px ${t.colors.secondary}`,
+        // outline: 'none',
       },
       '&&': {
         color: 'background',

@@ -2,7 +2,7 @@
   "name": "use-comments",
   "private": false,
   "description": "Effortlessly add a comment section to your website, and start the discussion on your content.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "author": {
     "name": "Aleksandra Sikora",
@@ -24,7 +24,7 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "dev": "microbundle watch",
-    "build:microbundle": "microbundle --no-compress --tsconfig tsconfig.lib.json"
+    "build:microbundle": "microbundle --no-compress --tsconfig tsconfig.lib.json --globals react=React"
   },
   "peerDependencies": {
     "react": "*"

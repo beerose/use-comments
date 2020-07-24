@@ -3,39 +3,11 @@
 React hook to effortlessly add a comment section to your website, and start the
 discussion on your content.
 
-```jsx
-const Comments = ({ postId }) => {
-  const { comments, addComment, count, loading } = useComments(
-    'https://<YOUR_HASURA_APP>.herokuapp.com/v1/graphql',
-    postId
-  );
+### Demo: https://use-comments.netlify.app/
 
-  return (
-    <section>
-      <AddComment onSubmit={addComment} />
-      <h3>{count} comments</h3>
-      {loading ? (
-        'Loading...'
-      ) : (
-        <div>
-          {comments.map(({ author, content, created_at, status }) => (
-            <article key={created_at}>
-              <div>
-                {`${author} ・ `}
-                <time dateTime={created_at}>{formatDate(created_at)}</time>
-                {status && ` ・ ${formatStatus(status)}`}
-              </div>
-              <p>{content}</p>
-            </article>
-          ))}
-        </div>
-      )}
-    </section>
-  );
-};
-```
+<img width="600" src="./assets/readme.png" />
 
-## Getting started
+# Getting started
 
 1. **Deploy Hasura**
 
@@ -92,33 +64,51 @@ const Comments = ({ postId }) => {
 
    or add it from CDN
 
-   ```
-   <srcript src="https://unpkg.com/use-comments@0.1.2/dist/index.modern.js" />
-   TODO: Example with unpkg and global variable `useComments`.
+   ```js
+   <script
+     crossorigin
+     src="https://unpkg.com/use-comments@0.1.3/dist/index.umd.js"
+   ></script>
+
+   <script type="module" async>
+      const { useComments } = useComments;
+
+      const { comments, error } = useComments(
+        'https://use-comments-app.herokuapp.com/v1/graphql',
+        'landing-page',
+      );
+   </script>
    ```
 
 5. **Create beautiful UI for your comments**
 
    Start off from one of the examples or write it from scratch.
 
-   - [Theme UI](https://codesandbox.io/s/use-comments-theme-ui-demo-hjqqj)
-   - [Tailwind](https://codesandbox.io/s/use-comments-demo-tailwind-pvhgw)
+   1. [Theme UI](https://codesandbox.io/s/use-comments-theme-ui-demo-hjqqj)
+
+   2. [Tailwind](https://codesandbox.io/s/use-comments-demo-tailwind-pvhgw)
 
 ## API reference
 
-### `useComments`
+import { Page } from '../components/Page'; import { Section } from
+'../components/Section';
+
+# API Reference
+
+## `useComments`
 
 Fetches comments from Hasura backend specified in `hasuraUrl` on mount and
 whenever `config.limit` or `config.offset` change.
 
-**Parameters**
+### Parameters
 
-- **hasuraUrl**: URL of the Hasura instance
-- **postId**: Comments will be fetched for the post with id `postId`
+- **hasuraUrl**: URL of your Hasura instance. Your comments will be stored
+  there.
+- **postId**: Comments will be fetched for the post with identifier `postId`
 - **config**: Configurable offset and limit for the GraphQL query to Hasura. See
   [`UseCommentsConfig`](#use-comments-config)
 
-**TypeScript Signature**
+### TypeScript Signature
 
 ```ts
 const useComments: (
@@ -128,7 +118,7 @@ const useComments: (
 ) => UseComentsResult;
 ```
 
-**Returns `UseComentsResult`**
+### Returns `UseComentsResult`
 
 ```ts
 interface UseComentsResult {
@@ -144,7 +134,7 @@ interface UseComentsResult {
 }
 ```
 
-### `Comment`
+## `Comment`
 
 ```ts
 export interface Comment {
@@ -156,7 +146,10 @@ export interface Comment {
 }
 ```
 
-### `UseCommentsConfig`
+## `UseCommentsConfig`
+
+Allows to implement pagination for the comments.
+[Learn more about implementing pagination.](recipes/#pagination).
 
 ```ts
 export interface UseCommentsConfig {
@@ -165,7 +158,17 @@ export interface UseCommentsConfig {
 }
 ```
 
-### `CommentStatus`
+## `CommentStatus`
+
+When user is adding a new comment it will be in one of four states:
+
+- `sending` — add comment request is still pending.
+- `added` — the comment was successfully added and is visible for other people.
+- `delivered-awaiting-approval` — the comment was successfully added, but it's
+  not yet visible for other people. You can make comments to require approval
+  before being visible to others. Read more about it
+  [here](recipes/#comments-with-approval).
+- `failed` — adding a comment was unsuccessful.
 
 ```ts
 export declare type CommentStatus =
@@ -175,7 +178,7 @@ export declare type CommentStatus =
   | 'failed';
 ```
 
-### `UseCommentsError`
+## `UseCommentsError`
 
 ```ts
 interface UseCommentsError {
@@ -183,3 +186,11 @@ interface UseCommentsError {
   details: string;
 }
 ```
+
+# Recipes
+
+1. [Pagination](https://use-comments.netlify.app/recipes#pagination)
+
+2. [Comments with approval](https://use-comments.netlify.app/recipes#comments-with-approval)
+
+3. [Send an email after receiving a new comment](https://use-comments.netlify.app/recipes#email)

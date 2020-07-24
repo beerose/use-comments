@@ -81,6 +81,16 @@ export const Header = (props: ComponentProps<'header'>) => {
       >
         <GatsbyLink
           onClick={() => setMenuOpen(false)}
+          to="/"
+          sx={{
+            pt: 2,
+            borderRadius: '4px',
+          }}
+        >
+          Home
+        </GatsbyLink>
+        <GatsbyLink
+          onClick={() => setMenuOpen(false)}
           to="/#getting-started"
           sx={{
             fontWeight: 'bold',

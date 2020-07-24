@@ -62,8 +62,8 @@ export const Header = (props: ComponentProps<'header'>) => {
       <div
         sx={{
           display: ['flex', 'none'],
-          transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)',
-          transition: 'transform 150ms linear',
+          transform: menuOpen ? 'translateX(0)' : 'translateX(-120%)',
+          transition: 'transform 300ms ease',
           width: '50%',
           height: '100%',
           zIndex: '100',
@@ -74,7 +74,9 @@ export const Header = (props: ComponentProps<'header'>) => {
           marginLeft: '-16px',
           paddingLeft: '16px',
           paddingTop: '60px',
-          boxShadow: theme => `0 6px 50px ${theme.colors.shadow}`,
+          boxShadow: menuOpen
+            ? theme => `0 6px 50px ${theme.colors.shadow}`
+            : 'none',
         }}
       >
         <GatsbyLink

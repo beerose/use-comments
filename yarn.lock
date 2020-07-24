@@ -2644,6 +2644,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-hamburger-menu@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-hamburger-menu/-/react-hamburger-menu-0.0.3.tgz#f956f8e3b0eb45e57c85ad3b22c2f968b8798612"
+  integrity sha512-JScOY0iQxK0H8Y/DjFxhM2FOnDTp5h+V2BFgaSQOzWmREtQkD1elikV7du3OcVQ0CLScgpnlpIrY0XGfP+d/2g==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-helmet@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-6.0.0.tgz#5b74e44a12662ffb12d1c97ee702cf4e220958cf"
@@ -11192,6 +11199,11 @@ react-fast-compare@^3.1.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
+react-hamburger-menu@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-hamburger-menu/-/react-hamburger-menu-1.2.1.tgz#bcaca08bf7d1ae96aa97553828765dce8f912eeb"
+  integrity sha512-It5Jque8bx9lYn8q/NFtu9Ci20fBMsyunFSp06ZGgWXbMZlTFrN0IxKguGZ0igYQr6RvJ3S9CN3rTjrObmq/Cw==
 
 react-helmet@^6.1.0:
   version "6.1.0"

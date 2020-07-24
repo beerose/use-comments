@@ -7,9 +7,11 @@ const theme: Theme = merge(future as Theme, {
   initialColorModeName: 'light',
   useColorSchemeMediaQuery: true,
   colors: {
+    shadow: 'rgba(0,0,0,0.2)',
     modes: {
       dark: {
         ...deep.colors,
+        shadow: 'rgba(0,0,0,0.4)',
         text: 'hsl(210, 60%, 97%)',
       },
     },
@@ -58,6 +60,7 @@ const theme: Theme = merge(future as Theme, {
       paddingX: '2px',
       overflow: 'scroll',
       width: '100%',
+      px: [3, 3, 3, 4],
     },
     p: {
       my: 2,

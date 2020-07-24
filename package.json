@@ -46,13 +46,13 @@
     "gatsby-plugin-typescript": "^2.4.15",
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-source-filesystem": "^2.3.19",
+    "microbundle": "^0.12.3",
     "prettier": "2.0.5",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-live": "^2.2.2",
     "react-toggle-dark-mode": "^1.0.2",
     "theme-ui": "^0.4.0-rc.1",
-    "microbundle": "^0.12.3",
     "typescript": "^3.9.6"
   },
   "repository": {
@@ -63,5 +63,9 @@
     "url": "https://github.com/beerose/use-comments/issues"
   },
   "homepage": "https://github.com/beerose/use-comments#readme",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "@types/react-hamburger-menu": "^0.0.3",
+    "react-hamburger-menu": "^1.2.1"
+  }
 }

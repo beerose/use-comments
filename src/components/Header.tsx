@@ -3,6 +3,9 @@ import { Link as GatsbyLink } from 'gatsby';
 import { jsx, Link } from 'theme-ui';
 import { ToggleMode } from './ToggleMode';
 import { ComponentProps } from 'react';
+import HamburgerMenu from 'react-hamburger-menu';
+import { useState } from 'react';
+import { alpha } from '@theme-ui/color';
 
 export const GitHub = () => (
   <svg viewBox="0 0 24 24" width="1.25rem" xmlns="http://www.w3.org/2000/svg">
@@ -16,51 +19,103 @@ export const GitHub = () => (
   </svg>
 );
 
-export const Header = (props: ComponentProps<'header'>) => (
-  <header
-    sx={{
-      display: 'flex',
-      variant: 'styles.header',
-      px: 3,
-      pb: 2,
-      fontSize: '14px',
-      alignItems: 'center',
-      color: 'text',
-      width: t => t.sizes.container + 2 * t.space['3'],
-      maxWidth: '100%',
-      a: {
-        color: 'text',
-        mr: 3,
-        ':first-of-type': {
-          mr: [3, 5],
-        },
-      },
-    }}
-    {...props}
-  >
-    <GatsbyLink to="/" sx={{ display: ['none', 'unset'] }}>
-      useComments
-    </GatsbyLink>
-    <GatsbyLink
-      to="/#getting-started"
+export const Header = (props: ComponentProps<'header'>) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <header
       sx={{
-        fontWeight: 'bold',
-        bg: 'muted',
-        px: 2,
-        py: 1,
-        borderRadius: '4px',
+        display: 'flex',
+        variant: 'styles.header',
+        px: [3, 3, 3],
+        pb: 2,
+        fontSize: '14px',
+        alignItems: 'center',
+        color: 'text',
+        width: t => t.sizes.container + 2 * t.space['3'],
+        maxWidth: '100%',
+        a: {
+          color: 'text',
+          mr: 3,
+          ':first-of-type': {
+            mr: [3, 5],
+          },
+        },
       }}
+      {...props}
     >
-      Getting Started
-    </GatsbyLink>
-    <GatsbyLink to="/api">API Reference</GatsbyLink>
-    <div sx={{ mx: 'auto' }} />
-    <Link
-      href="https://github.com/beerose/use-comments"
-      sx={{ display: 'flex' }}
-    >
-      <GitHub />
-    </Link>
-    <ToggleMode />
-  </header>
-);
+      <HamburgerMenu
+        isOpen={menuOpen}
+        menuClicked={() => setMenuOpen(prev => !prev)}
+        width={18}
+        height={12}
+        strokeWidth={2}
+        rotate={0}
+        borderRadius={5}
+        animationDuration={0.3}
+        color="currentColor"
+        sx={{
+          display: ['unset', 'none'],
+          zIndex: '200',
+        }}
+      />
+      <div
+        sx={{
+          display: 'flex',
+          transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)',
+          transition: 'transform 150ms linear',
+          width: '50%',
+          height: '100%',
+          zIndex: '100',
+          bg: 'background',
+          position: 'fixed',
+          top: '0',
+          flexDirection: 'column',
+          marginLeft: '-16px',
+          paddingLeft: '16px',
+          paddingTop: '60px',
+          boxShadow: theme => `0 6px 50px ${theme.colors.shadow}`,
+        }}
+      >
+        <GatsbyLink
+          to="/#getting-started"
+          sx={{
+            fontWeight: 'bold',
+            py: 2,
+            borderRadius: '4px',
+          }}
+        >
+          Getting Started
+        </GatsbyLink>
+        <GatsbyLink to="/api">API Reference</GatsbyLink>
+      </div>
+      <GatsbyLink to="/" sx={{ display: ['none', 'unset'] }}>
+        useComments
+      </GatsbyLink>
+      <GatsbyLink
+        to="/#getting-started"
+        sx={{
+          fontWeight: 'bold',
+          bg: 'muted',
+          px: 2,
+          py: 1,
+          borderRadius: '4px',
+          display: ['none', 'unset'],
+        }}
+      >
+        Getting Started
+      </GatsbyLink>
+      <GatsbyLink to="/api" sx={{ display: ['none', 'unset'] }}>
+        API Reference
+      </GatsbyLink>
+      <div sx={{ mx: 'auto' }} />
+      <Link
+        href="https://github.com/beerose/use-comments"
+        sx={{ display: 'flex' }}
+      >
+        <GitHub />
+      </Link>
+      <ToggleMode />
+    </header>
+  );
+};

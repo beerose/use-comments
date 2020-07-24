@@ -61,7 +61,7 @@ export const Header = (props: ComponentProps<'header'>) => {
       />
       <div
         sx={{
-          display: 'flex',
+          display: ['flex', 'none'],
           transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)',
           transition: 'transform 150ms linear',
           width: '50%',

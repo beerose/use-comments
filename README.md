@@ -5,7 +5,7 @@ discussion on your content.
 
 ### Demo: https://use-comments.netlify.app/
 
-<img width="600" src="./assets/readme.png" />
+<img width="900" src="./assets/readme.png" />
 
 # Getting started
 
@@ -87,11 +87,6 @@ discussion on your content.
    1. [Theme UI](https://codesandbox.io/s/use-comments-theme-ui-demo-hjqqj)
 
    2. [Tailwind](https://codesandbox.io/s/use-comments-demo-tailwind-pvhgw)
-
-## API reference
-
-import { Page } from '../components/Page'; import { Section } from
-'../components/Section';
 
 # API Reference
 

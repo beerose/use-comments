@@ -47,7 +47,13 @@ export default {
     const [copied, setCopied] = useState(false);
 
     return (
-      <div sx={{ position: 'relative', width: '90ch', maxWidth: '100%' }}>
+      <div
+        sx={{
+          position: 'relative',
+          width: '90ch',
+          maxWidth: '100%',
+        }}
+      >
         <button
           sx={{
             appearance: 'none',
@@ -80,7 +86,7 @@ export default {
         >
           {copied ? 'Copied!' : 'Copy'}
         </button>
-        <Prism {...props} />
+        <Prism {...props} sx={{ maxHeight: '700px', overflow: 'scroll' }} />
       </div>
     );
   },

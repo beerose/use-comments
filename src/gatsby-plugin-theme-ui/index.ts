@@ -61,6 +61,9 @@ const theme: Theme = merge(future as Theme, {
       overflow: 'scroll',
       width: '100%',
       px: [3, 3, 3, 4],
+      section: {
+        px: 0,
+      },
     },
     p: {
       my: 2,
@@ -106,6 +109,7 @@ const theme: Theme = merge(future as Theme, {
     },
     h2: {
       marginTop: 0,
+      color: lighten('text', 0.2),
     },
     hr: {
       borderStyle: 'dashed',
@@ -141,7 +145,7 @@ const theme: Theme = merge(future as Theme, {
       },
     },
     img: {
-      marginY: '15px',
+      marginY: '25px',
       borderRadius: '5px',
       boxShadow: '0 6px 42px rgba(0,0,0,0.12)',
     },

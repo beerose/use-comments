@@ -51,7 +51,17 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
         onChange={e => setComment(e.target.value)}
         sx={{ mb: 3, fontFamily: 'body' }}
       />
-      <Button type="submit" sx={{ mb: 3 }}>
+      <Button
+        type="submit"
+        sx={{
+          mb: 3,
+          ...((!username || !comment) && {
+            bg: 'gray',
+            pointerEvents: 'none',
+          }),
+        }}
+        disabled={!username || !comment}
+      >
         Add comment
       </Button>
       {added && (

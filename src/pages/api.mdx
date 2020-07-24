@@ -60,6 +60,7 @@ export interface Comment {
 ## `UseCommentsConfig`
 
 Allows to implement pagination for the comments.
+[Learn more about implementing pagination.](recipes/#pagination).
 
 ```ts
 export interface UseCommentsConfig {
@@ -76,7 +77,8 @@ When user is adding a new comment it will be in one of four states:
 - `added` — the comment was successfully added and is visible for other people.
 - `delivered-awaiting-approval` — the comment was successfully added, but it's
   not yet visible for other people. You can make comments to require approval
-  before being visible to others. Read more about it [here]().
+  before being visible to others. Read more about it
+  [here](recipes/#comments-with-approval).
 - `failed` — adding a comment was unsuccessful.
 
 ```ts

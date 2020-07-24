@@ -1,0 +1,106 @@
+import { Page } from '../components/Page';
+import { Section } from '../components/Section';
+
+<Page>
+<Section>
+
+# Recipes
+
+1. [Pagination](#pagination)
+
+2. [Comments with approval](#comments-with-approval)
+
+3. [Send an email after receiving a new comment](#email)
+
+## <div style="padding: 20px;"/>
+
+## [Pagination](#pagination)
+
+Below you can find an example implementation of pagination using `use-comments`.
+
+<iframe
+  src="https://codesandbox.io/embed/use-comments-pagination-z5kmg?fontsize=14&hidenavigation=1&theme=light"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden; padding-bottom: 25px;"
+  title="use-comments-pagination"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+## [Comments with approval](#comments-with-approval)
+
+In your Hasura app you can see that there's column `hidden` in the `comments`
+table. By default this value is set to `false` meaning that after adding a
+comment it will be automatically visible for other people. You can change it to
+`true` and then all the comments would need to be manually approved before being
+publically visible. To do this we need to go to `Modify` section of the
+`comments` table:
+
+<img width="700" src="./hidden.png" />
+
+If `hidden` is set to true newly added comments are going to have status
+`delivered-awaiting-approval` and won't be visible for other users. To approve
+them you'd need to edit a particular row and set value of `hidden` to `false`.
+
+<img width="400" src="./edit-row.png" />
+
+## [Send an email after receiving a new comment](#email)
+
+It would be cool if there were some notifications after receiving a new comment,
+right? I have good news! With Hasura it's very straightforward. You can use
+`Data Triggers`. A Data Trigger will capture insert events on a specified table
+and then call a webhook that can carry out any custom logic. In this case this
+custom logic would be sending an email.
+
+You can read more about Data Triggers
+[here](https://hasura.io/docs/1.0/graphql/manual/event-triggers/create-trigger.html).
+
+<img width="700" src="./trigger.png" />
+
+Below you can find an example webhook implemented with
+[`Express`](https://expressjs.com/).
+
+```js
+const nodemailer = require('nodemailer');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+
+const transporter = nodemailer.createTransport({
+  service: process.env.SMTP_SERVICE,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  auth: {
+    user: process.env.SMTP_LOGIN,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
+
+app.set('port', process.env.PORT || 3000);
+app.use(bodyParser.json());
+
+app.post('/send-email', function (req, res) {
+  const comment = req.body.event.data.new;
+
+  const mailOptions = {
+    from: process.env.SMTP_LOGIN,
+    to: process.env.SMTP_LOGIN,
+    subject: 'You have a new comment!',
+    text: `New comment: ${JSON.stringify(comment)}`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+      return;
+    }
+    res.json({ success: true });
+  });
+});
+
+app.listen(app.get('port'), function () {
+  console.log('Server started on: ' + app.get('port'));
+});
+```
+
+</Section>
+</Page>

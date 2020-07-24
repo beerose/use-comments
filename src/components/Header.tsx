@@ -80,6 +80,7 @@ export const Header = (props: ComponentProps<'header'>) => {
         }}
       >
         <GatsbyLink
+          onClick={() => setMenuOpen(false)}
           to="/#getting-started"
           sx={{
             fontWeight: 'bold',
@@ -89,7 +90,16 @@ export const Header = (props: ComponentProps<'header'>) => {
         >
           Getting Started
         </GatsbyLink>
-        <GatsbyLink to="/api">API Reference</GatsbyLink>
+        <GatsbyLink onClick={() => setMenuOpen(false)} to="/api">
+          API Reference
+        </GatsbyLink>
+        <GatsbyLink
+          onClick={() => setMenuOpen(false)}
+          sx={{ pt: 2 }}
+          to="/recipes"
+        >
+          Recipes
+        </GatsbyLink>
       </div>
       <GatsbyLink to="/" sx={{ display: ['none', 'unset'] }}>
         useComments
@@ -109,6 +119,9 @@ export const Header = (props: ComponentProps<'header'>) => {
       </GatsbyLink>
       <GatsbyLink to="/api" sx={{ display: ['none', 'unset'] }}>
         API Reference
+      </GatsbyLink>
+      <GatsbyLink to="/recipes" sx={{ display: ['none', 'unset'] }}>
+        Recipes
       </GatsbyLink>
       <div sx={{ mx: 'auto' }} />
       <Link

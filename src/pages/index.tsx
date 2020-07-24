@@ -20,11 +20,6 @@ export default function IndexPage() {
       <Section>
         <GettingStarted />
       </Section>
-      <footer sx={{ py: 4, textAlign: 'center' }}>
-        © 2020 ・ Built with 💜 by{' '}
-        <a href="https://twitter.com/aleksandrasays">Aleksandra Sikora</a>・
-        Powered by <a href="https://hasura.io">Hasura</a>
-      </footer>
     </Page>
   );
 }

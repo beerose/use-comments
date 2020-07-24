@@ -123,12 +123,15 @@ const theme: Theme = merge(future as Theme, {
       counterReset: 'i',
       paddingInlineStart: 4,
       li: {
+        position: 'relative',
         counterIncrement: 'i',
         '> p:first-of-type': {
           display: 'inline-block',
         },
       },
       'li:before': {
+        position: 'absolute',
+        top: '10px',
         fontWeight: 'bold',
         fontFamily: 'heading',
         fontSize: 3,

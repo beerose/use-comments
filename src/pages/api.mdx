@@ -13,8 +13,9 @@ whenever `config.limit` or `config.offset` change.
 
 ### Parameters
 
-- **hasuraUrl**: URL of the Hasura instance
-- **postId**: Comments will be fetched for the post with id `postId`
+- **hasuraUrl**: URL of your Hasura instance. Your comments will be stored
+  there.
+- **postId**: Comments will be fetched for the post with identifier `postId`
 - **config**: Configurable offset and limit for the GraphQL query to Hasura. See
   [`UseCommentsConfig`](#use-comments-config)
 
@@ -58,6 +59,8 @@ export interface Comment {
 
 ## `UseCommentsConfig`
 
+Allows to implement pagination for the comments.
+
 ```ts
 export interface UseCommentsConfig {
   limit?: number;
@@ -66,6 +69,15 @@ export interface UseCommentsConfig {
 ```
 
 ## `CommentStatus`
+
+When user is adding a new comment it will be in one of four states:
+
+- `sending` — add comment request is still pending.
+- `added` — the comment was successfully added and is visible for other people.
+- `delivered-awaiting-approval` — the comment was successfully added, but it's
+  not yet visible for other people. You can make comments to require approval
+  before being visible to others. Read more about it [here]().
+- `failed` — adding a comment was unsuccessful.
 
 ```ts
 export declare type CommentStatus =

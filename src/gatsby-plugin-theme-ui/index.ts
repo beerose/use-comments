@@ -107,6 +107,10 @@ const theme: Theme = merge(future as Theme, {
     hr: {
       borderStyle: 'dashed',
     },
+    ul: {
+      width: '70ch',
+      maxWidth: '100%',
+    },
     ol: {
       listStyle: 'none',
       counterReset: 'i',

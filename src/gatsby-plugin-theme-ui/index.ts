@@ -3,6 +3,27 @@ import nightOwl from '@theme-ui/prism/presets/night-owl.json';
 import { Theme, merge } from 'theme-ui';
 import { alpha, lighten } from '@theme-ui/color';
 
+const primary = {
+  fontFamily: 'inherit',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'transform 150ms linear',
+  ':hover, :focus': {
+    transform: 'translateY(-0.125rem)',
+  },
+  ':focus': {
+    // borderColor: 'background',
+    // boxShadow: t => `0 0 0 2px ${t.colors.secondary}`,
+    // outline: 'none',
+  },
+  '&&': {
+    color: 'background',
+    ':hover, :focus': {
+      textDecoration: 'none',
+    },
+  },
+};
+
 const secondaryLight = alpha('secondary', 0.2);
 const theme: Theme = merge(future as Theme, {
   initialColorModeName: 'light',
@@ -171,30 +192,15 @@ const theme: Theme = merge(future as Theme, {
     },
   },
   buttons: {
-    primary: {
-      fontFamily: 'inherit',
-      fontWeight: 'bold',
-      cursor: 'pointer',
-      transition: 'transform 150ms linear',
-      ':hover, :focus': {
-        transform: 'translateY(-0.125rem)',
-      },
-      ':focus': {
-        // borderColor: 'background',
-        // boxShadow: t => `0 0 0 2px ${t.colors.secondary}`,
-        // outline: 'none',
-      },
-      '&&': {
-        color: 'background',
-        ':hover, :focus': {
-          textDecoration: 'none',
-        },
-      },
-    },
+    primary: primary,
   },
   links: {
     navLink: {
       borderBottom: 'none',
+    },
+    button: {
+      ...primary,
+      ':focus, :hover': { '::before': { display: 'none' } },
     },
   },
   forms: {

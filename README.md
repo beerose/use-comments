@@ -1,3 +1,5 @@
+![npm](https://img.shields.io/npm/v/use-comments)
+
 # useComments
 
 React hook to effortlessly add a comment section to your website, and start the
@@ -5,7 +7,7 @@ discussion on your content.
 
 ### Demo: https://use-comments.netlify.app/
 
-<img width="900" src="./assets/readme.png" />
+<a href="https://use-comments.netlify.app/"><img width="900" src="./assets/readme.png" /></a>
 
 # What is it?
 

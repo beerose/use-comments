@@ -83,7 +83,6 @@ const theme: Theme = merge(future as Theme, {
     },
     section: {
       paddingX: '2px',
-      overflow: 'scroll',
       width: '100%',
       px: [3, 3, 3, 4],
       section: {

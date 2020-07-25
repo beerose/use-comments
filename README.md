@@ -1,3 +1,5 @@
+![npm](https://img.shields.io/npm/v/use-comments)
+
 # useComments
 
 React hook to effortlessly add a comment section to your website, and start the

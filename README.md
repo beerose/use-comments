@@ -5,7 +5,7 @@ discussion on your content.
 
 ### Demo: https://use-comments.netlify.app/
 
-<img width="900" src="./assets/readme.png" />
+<a href="https://use-comments.netlify.app/"><img width="900" src="./assets/readme.png" /></a>
 
 # What is it?
 

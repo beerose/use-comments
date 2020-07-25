@@ -7,7 +7,25 @@ discussion on your content.
 
 <img width="900" src="./assets/readme.png" />
 
+# What is it?
+
+### 🎃 Headless React Hook
+
+`useComments` just cares about the data. You write your own UI.
+
+### 👺 Backed with Hasura
+
+We need to keep all of these comments somewhere, right?
+[Hasura](https://hasura.io), a GraphQL layer on top of a database, handles this
+for us! Don't worry, you'll get your Hasura up and running in 30 seconds!
+
+### 🚀 Quick and easy
+
+The setup will take less than 5 minutes.
+
 # Getting started
+
+Let's add comments to a website in five simple steps!
 
 1. **Deploy Hasura**
 

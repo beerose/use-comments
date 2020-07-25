@@ -42,6 +42,7 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
         value={username}
         onChange={e => setUsername(e.target.value)}
         sx={{ mb: 3 }}
+        autoComplete="off"
       />
       <Label htmlFor="comment">Comment</Label>
       <Textarea
@@ -58,8 +59,8 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
         sx={{
           mb: 3,
           ...((!username || !comment) && {
-            bg: 'gray',
             pointerEvents: 'none',
+            opacity: '0.5',
           }),
         }}
         disabled={!username || !comment}

@@ -4,7 +4,17 @@ module.exports = {
     'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-plugin-mdx',
-      options: {},
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              isIconAfterHeader: true,
+              icon: false,
+            },
+          },
+        ],
+      },
     },
   ],
 };

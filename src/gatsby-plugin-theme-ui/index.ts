@@ -3,9 +3,11 @@ import nightOwl from '@theme-ui/prism/presets/night-owl.json';
 import { Theme, merge } from 'theme-ui';
 import { alpha, lighten } from '@theme-ui/color';
 
+const secondaryLight = alpha('secondary', 0.2);
 const theme: Theme = merge(future as Theme, {
   initialColorModeName: 'light',
   useColorSchemeMediaQuery: true,
+  // fontSizes: [8, 10, 16, 24, 36, 54, 81, 121],
   colors: {
     shadow: 'rgba(0,0,0,0.2)',
     modes: {
@@ -88,28 +90,42 @@ const theme: Theme = merge(future as Theme, {
       borderRadius: 'small',
     },
     a: {
-      color: 'primary',
+      color: 'text',
       cursor: 'pointer',
       textDecoration: 'none',
-      nav: {
-        textDecoration: 'none',
-      },
+      borderBottom: '2px solid',
+      borderBottomColor: 'primary',
+      position: 'relative',
       ':focus, :hover': {
-        textDecoration: 'underline',
+        ':before': {
+          content: '""',
+          backgroundColor: secondaryLight,
+          opacity: 0.9,
+          position: 'absolute',
+          top: -1,
+          bottom: -1,
+          right: -1,
+          left: -1,
+          transform: 'rotate(-2deg)',
+        },
       },
-    },
-    'h1, h2, h3, h4, h5, h6': {
-      fontFamily: 'heading',
     },
     h1: {
-      fontSize: ['40px', '60px'],
       padding: 0,
       lineHeight: ['50px', '70px'],
       color: lighten('text', 0.2),
+      fontSize: [6, 7],
     },
     h2: {
-      marginTop: 0,
       color: lighten('text', 0.2),
+      fontSize: 5,
+    },
+    h3: {
+      fontFamily: 'body',
+      fontSize: 2,
+    },
+    h4: {
+      fontFamily: 'body',
     },
     hr: {
       borderStyle: 'dashed',
@@ -143,8 +159,7 @@ const theme: Theme = merge(future as Theme, {
         my: '-7px',
         ml: -4,
         opacity: 0.9,
-        // border: '1px solid',
-        bg: alpha('secondary', 0.2),
+        bg: secondaryLight,
       },
     },
     img: {
@@ -173,6 +188,11 @@ const theme: Theme = merge(future as Theme, {
           textDecoration: 'none',
         },
       },
+    },
+  },
+  links: {
+    navLink: {
+      borderBottom: 'none',
     },
   },
   forms: {

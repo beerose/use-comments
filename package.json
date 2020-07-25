@@ -30,8 +30,6 @@
     "react": "*"
   },
   "devDependencies": {
-    "@types/react-hamburger-menu": "^0.0.3",
-    "react-hamburger-menu": "^1.2.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.6.7",
@@ -39,6 +37,7 @@
     "@theme-ui/color": "^0.4.0-rc.1",
     "@theme-ui/presets": "^0.4.0-rc.1",
     "@theme-ui/prism": "^0.4.0-rc.1",
+    "@types/react-hamburger-menu": "^0.0.3",
     "@types/react-helmet": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
@@ -51,6 +50,7 @@
     "microbundle": "^0.12.3",
     "prettier": "2.0.5",
     "react-dom": "^16.13.1",
+    "react-hamburger-menu": "^1.2.1",
     "react-helmet": "^6.1.0",
     "react-live": "^2.2.2",
     "react-toggle-dark-mode": "^1.0.2",
@@ -71,5 +71,8 @@
     "blog",
     "hook",
     "comments"
-  ]
+  ],
+  "dependencies": {
+    "gatsby-remark-autolink-headers": "^2.3.11"
+  }
 }

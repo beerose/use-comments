@@ -40,6 +40,7 @@ export const Header = (props: ComponentProps<'header'>) => {
           ':first-of-type': {
             mr: [3, 5],
           },
+          borderBottom: 'none',
         },
       }}
       {...props}
@@ -100,23 +101,31 @@ export const Header = (props: ComponentProps<'header'>) => {
         >
           Getting Started
         </GatsbyLink>
-        <GatsbyLink onClick={() => setMenuOpen(false)} to="/api">
+        <GatsbyLink
+          onClick={() => setMenuOpen(false)}
+          sx={{ variant: 'links.navLink' }}
+          to="/api"
+        >
           API Reference
         </GatsbyLink>
         <GatsbyLink
           onClick={() => setMenuOpen(false)}
-          sx={{ pt: 2 }}
+          sx={{ pt: 2, variant: 'links.navLink' }}
           to="/recipes"
         >
           Recipes
         </GatsbyLink>
       </div>
-      <GatsbyLink to="/" sx={{ display: ['none', 'unset'] }}>
+      <GatsbyLink
+        to="/"
+        sx={{ display: ['none', 'unset'], variant: 'links.navLink' }}
+      >
         useComments
       </GatsbyLink>
       <GatsbyLink
         to="/#getting-started"
         sx={{
+          variant: 'links.navLink',
           fontWeight: 'bold',
           bg: 'muted',
           px: 2,
@@ -127,16 +136,22 @@ export const Header = (props: ComponentProps<'header'>) => {
       >
         Getting Started
       </GatsbyLink>
-      <GatsbyLink to="/api" sx={{ display: ['none', 'unset'] }}>
+      <GatsbyLink
+        to="/api"
+        sx={{ display: ['none', 'unset'], variant: 'links.navLink' }}
+      >
         API Reference
       </GatsbyLink>
-      <GatsbyLink to="/recipes" sx={{ display: ['none', 'unset'] }}>
+      <GatsbyLink
+        to="/recipes"
+        sx={{ display: ['none', 'unset'], variant: 'links.navLink' }}
+      >
         Recipes
       </GatsbyLink>
       <div sx={{ mx: 'auto' }} />
       <Link
         href="https://github.com/beerose/use-comments"
-        sx={{ display: 'flex' }}
+        sx={{ display: 'flex', variant: 'links.navLink' }}
       >
         <GitHub />
       </Link>

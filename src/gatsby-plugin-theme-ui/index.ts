@@ -10,11 +10,13 @@ const theme: Theme = merge(future as Theme, {
   // fontSizes: [8, 10, 16, 24, 36, 54, 81, 121],
   colors: {
     shadow: 'rgba(0,0,0,0.2)',
+    heading: 'rgb(51, 51, 51)',
     modes: {
       dark: {
         ...deep.colors,
         shadow: 'rgba(0,0,0,0.4)',
         text: 'hsl(210, 60%, 97%)',
+        heading: '#fff',
       },
     },
   },
@@ -113,11 +115,11 @@ const theme: Theme = merge(future as Theme, {
     h1: {
       padding: 0,
       lineHeight: ['50px', '70px'],
-      color: lighten('text', 0.2),
+      color: 'heading',
       fontSize: [6, 7],
     },
     h2: {
-      color: lighten('text', 0.2),
+      color: 'heading',
       fontSize: 5,
     },
     h3: {

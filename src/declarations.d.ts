@@ -7,5 +7,3 @@ declare module '*.mdx' {
   const component: React.FC;
   export default component;
 }
-
-declare module 'react-toggle-dark-mode';

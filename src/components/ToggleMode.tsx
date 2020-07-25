@@ -6,13 +6,23 @@ export const ToggleMode = () => {
   const [colorMode, setColorMode] = useColorMode();
 
   return (
-    <DarkModeSwitch
-      onChange={() =>
-        setColorMode(colorMode === 'default' ? 'dark' : 'default')
-      }
-      checked={colorMode !== 'default'}
-      size="calc(1.25rem + 1px)"
-      speed={2.5}
-    />
+    <div className="js-only" sx={{ display: 'flex' }}>
+      <DarkModeSwitch
+        onChange={() =>
+          setColorMode(colorMode === 'default' ? 'dark' : 'default')
+        }
+        checked={colorMode !== 'default'}
+        sunColor="currentColor"
+        moonColor="currentColor"
+        /** @ts-ignore */
+        size="calc(1.25rem + 1px)"
+        speed={2.5}
+      />
+      <noscript>
+        <style
+          dangerouslySetInnerHTML={{ __html: '.js-only { display: none }' }}
+        />
+      </noscript>
+    </div>
   );
 };

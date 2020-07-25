@@ -86,7 +86,7 @@ export default {
         >
           {copied ? 'Copied!' : 'Copy'}
         </button>
-        <Prism {...props} sx={{ maxHeight: '700px', overflow: 'scroll' }} />
+        <Prism {...props} sx={{ maxHeight: '700px', overflow: 'auto' }} />
       </div>
     );
   },

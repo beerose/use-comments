@@ -171,7 +171,7 @@ const StyledError = styled(LiveError)`
   font-size: 0.9em;
   font-family: 'Source Code Pro', monospace;
   height: 80px;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const formatDate = (dateStr: string) => {

@@ -30,4 +30,4 @@ const Comments = ({ postId }) => {
   );
 };
 
-render(<Comments postId="1" />);
+render(<Comments postId="landing-page" />);

@@ -77,6 +77,9 @@ const theme: Theme = merge(future as Theme, {
           paddingLeft: '5px',
         },
       },
+      '> p': {
+        whiteSpace: 'pre'
+      }
     },
     textarea: {
       fontFamily: 'body',

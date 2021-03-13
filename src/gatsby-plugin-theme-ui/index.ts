@@ -78,7 +78,7 @@ const theme: Theme = merge(future as Theme, {
         },
       },
       '> p': {
-        whiteSpace: 'pre'
+        whiteSpace: 'pre-wrap'
       }
     },
     textarea: {

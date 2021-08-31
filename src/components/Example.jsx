@@ -2,7 +2,7 @@
 
 const Comments = ({ postId }) => {
   const { comments, addComment, count, loading } = useComments(
-    'https://use-comments-app.herokuapp.com/v1/graphql',
+    'https://use-comments.hasura.app/v1/graphql',
     postId
   );
 
